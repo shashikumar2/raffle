@@ -1,0 +1,71 @@
+<html>
+    <head>
+        <title>Hello</title>
+    </head>
+    <body>
+        <div id = 'root'>
+        </div>
+           
+            <script src="C:\Users\SHASHI NIRANJAN\jan-2020-mern\react\js\react.development.js"></script>
+            <script src="C:\Users\SHASHI NIRANJAN\jan-2020-mern\react\js\react-dom.development.js"></script>
+            <script src="C:\Users\SHASHI NIRANJAN\jan-2020-mern\react\js\babel.js"></script>
+
+            <script type="text/babel">
+                    
+            const rootHandle = document.getElementById('root')
+
+            class Generate extends React.Component{
+                constructor(){
+                    super()
+                    this.state = {
+                        user:'',
+                        users:['sam','john','doe','mark']
+                    }
+                }
+
+                handleDraw = () => {                 
+                    this.setState(function(prevState){
+                        return {
+                            user:prevState.users.splice(Math.floor(Math.random()*(this.state.users.length)),1),
+                            users: prevState.users.filter(user=>user!=this.state.user)
+                        }
+                    })
+                }
+
+                render() {
+                    console.log(this.state)
+                    return (
+                        <div>
+                            
+                            <h2> {this.state.user}</h2>
+                            <h2> Users </h2>
+
+                            <table border= '1'>
+                            <thead>
+                                <tr>
+                                   
+                                </tr>
+                            </thead>
+                            <tbody>
+                               {
+                                   this.state.users.map((user,i)=>{
+                                       return (
+                                            <tr key={i}>
+                                                <td> {user} </td>
+                                               
+                                            </tr>
+                                       )
+                                   })
+                               }
+                            </tbody>
+                        </table>
+                            <button onClick={this.handleDraw}> draw </button>                                             
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(<Generate />, rootHandle)                   
+          </script>
+    </body>
+</html>
